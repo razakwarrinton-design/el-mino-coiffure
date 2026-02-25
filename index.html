@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EL MINO Coiffure</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+
+/* ============================
+   VARIABLES & RESET
+   ============================ */
+:root {
+  --noir: #0a0a0a;
+  --noir2: #161616;
+  --or: #f0c030;
+  --or2: #ffe066;
+  --blanc: #ffffff;
+  --gris: #ffffff;
+  --radius: 10px;
+  --T: 0.3s ease;
+  --serif: 'Playfair Display', serif;
+  --sans: 'Poppins', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--noir);color:var(--blanc);font-family:var(--sans);font-weight:300;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ============================
+   SCROLLBAR
+   ============================ */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--noir)}
+::-webkit-scrollbar-thumb{background:var(--or);border-radius:3px}
+
+/* ============================
+   BOUTONS
+   ============================ */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:13px 32px;border-radius:var(--radius);font-family:var(--sans);font-weight:600;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--T)}
+.btn-gold{background:var(--or);color:var(--noir)}
+.btn-gold:hover{background:var(--or2);transform:translateY(-2px)}
+.btn-out{background:transparent;color:var(--or);border:2px solid var(--or)}
+.btn-out:hover{background:var(--or);color:var(--noir)}
+
+/* ============================
+   HEADER
+   ============================ */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:68px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,10,10,.97);
+  border-bottom:1px solid rgba(240,192,48,.18);
+  backdrop-filter:blur(10px);
+}
+.logo{font-family:var(--serif);font-size:1.55rem;color:var(--or);letter-spacing:2px;cursor:pointer}
+.logo span{color:var(--blanc)}
+nav{display:flex;gap:1.8rem;align-items:center}
+nav a{
+  font-size:.82rem;letter-spacing:1px;text-transform:uppercase;
+  color:var(--blanc);position:relative;transition:color var(--T);cursor:pointer
+}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width var(--T)}
+nav a:hover,nav a.on{color:var(--or)}
+nav a:hover::after,nav a.on::after{width:100%}
+.nav-rdv{background:var(--or)!important;color:var(--noir)!important;padding:7px 18px;border-radius:var(--radius);font-weight:600}
+.nav-rdv::after{display:none!important}
+.nav-rdv:hover{background:var(--or2)!important}
+/* hamburger */
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.hbg span{display:block;width:24px;height:2px;background:var(--or);transition:all var(--T)}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============================
+   PAGES (SPA)
+   ============================ */
+.page{display:none;min-height:calc(100vh - 68px);padding:88px 5% 60px;animation:pIn .35s ease}
+.page.on{display:block}
+#pg-home.on{display:flex;align-items:center;justify-content:center;padding:0}
+#pg-about.on,#pg-contact.on{display:grid}
+@keyframes pIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============================
+   PAGE — ACCUEIL (HERO)
+   ============================ */
+#pg-home{
+  #pg-home{
+  min-height:100vh;text-align:center;
+  display:flex;align-items:center;justify-content:center;
+  padding-top:100px;padding-bottom:40px;
+  background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.72)),
+             url('images/hero-bg.jpg') center/cover no-repeat;
+}
+  /*
+  ================================================
+  👉 TON IMAGE DE FOND :
+     Remplace hero-bg.jpg par ton fichier image
+     Place le fichier dans le dossier /images/
+  ================================================
+  */
+  background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.72)),
+             url('images/hero-bg.jpg') center/cover no-repeat;
+}
+.hero-wrap{max-width:740px;padding:0 5%}
+/* Cercle logo */
+.logo-circle{
+  width:155px;height:155px;border-radius:50%;margin:0 auto 2rem;
+  border:3px solid var(--or);background:rgba(0,0,0,.45);
+  display:flex;align-items:center;justify-content:center;overflow:visible;
+  box-shadow:0 0 0 10px rgba(240,192,48,.1),0 0 50px rgba(240,192,48,.3);
+  animation:pulse 3s ease-in-out infinite;
+  position:relative;z-index:2;
+  margin-top:80px;
+}
+.logo-circle img{width:100px;height:100px;object-fit:contain}
+.logo-circle .logo-fallback{font-family:var(--serif);font-size:2.5rem;color:var(--or);letter-spacing:2px}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 10px rgba(240,192,48,.1),0 0 40px rgba(240,192,48,.25)}
+  50%{box-shadow:0 0 0 16px rgba(240,192,48,.15),0 0 70px rgba(240,192,48,.5)}
+}
+.hero-title{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4.5rem);line-height:1.15;margin-bottom:1.2rem;font-weight:700;color:#ffffff}
+.hero-title span{color:var(--or)}
+.hero-sub{color:#ffffff;font-size:1.05rem;margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;font-weight:400}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ============================
+   PAGE — À PROPOS
+   ============================ */
+#pg-about{grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+.about-img-box{position:relative}
+.about-img-box::before{content:'';position:absolute;inset:-8px;border:2px solid var(--or);border-radius:18px;z-index:0}
+.about-img-box img,.about-ph{
+  width:100%;height:460px;object-fit:cover;border-radius:var(--radius);position:relative;z-index:1
+}
+.about-ph{
+  background:var(--noir2);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1rem;color:var(--gris);font-size:.9rem
+}
+.about-ph i{font-size:3rem;color:var(--or);opacity:.45}
+.ttl{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--or);margin-bottom:.4rem}
+.div{width:55px;height:3px;background:var(--or);margin-bottom:1.5rem;border-radius:2px}
+.about-p{color:rgba(245,240,232,.72);margin-bottom:1.1rem}
+.stats{display:flex;gap:2rem;margin-top:1.8rem}
+.stat span:first-child{font-family:var(--serif);font-size:2.4rem;color:var(--or);display:block}
+.stat span:last-child{font-size:.78rem;color:var(--gris);text-transform:uppercase;letter-spacing:1px}
+
+/* ============================
+   PAGE — SERVICES
+   ============================ */
+#pg-services .head{text-align:center;margin-bottom:3rem}
+#pg-services .head .ttl{text-align:center}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.6rem}
+.srv{
+  background:var(--noir2);border:1px solid rgba(240,192,48,.13);border-radius:var(--radius);
+  overflow:hidden;transition:transform var(--T),border-color var(--T),box-shadow var(--T)
+}
+.srv:hover{transform:translateY(-5px);border-color:var(--or);box-shadow:0 12px 28px rgba(240,192,48,.13)}
+.srv-img{width:100%;height:195px;overflow:hidden;background:var(--noir);display:flex;align-items:center;justify-content:center}
+.srv-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.srv:hover .srv-img img{transform:scale(1.06)}
+.srv-ph{display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--gris);font-size:.78rem}
+.srv-ph i{font-size:2.4rem;color:var(--or);opacity:.38}
+.srv-body{padding:1.4rem}
+.srv-em{font-size:1.7rem;margin-bottom:.5rem}
+.srv-name{font-family:var(--serif);font-size:1.15rem;color:var(--blanc);margin-bottom:.4rem}
+.srv-desc{font-size:.83rem;color:var(--gris);margin-bottom:.9rem}
+.srv-price{font-size:1.25rem;font-weight:600;color:var(--or)}
+
+/* ============================
+   PAGE — GALERIE
+   ============================ */
+#pg-gallery .head{text-align:center;margin-bottom:2.5rem}
+.gal-hint{text-align:center;color:var(--gris);font-size:.88rem;margin-bottom:2rem}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+.gal-item{
+  position:relative;height:255px;border-radius:var(--radius);overflow:hidden;
+  background:var(--noir2);border:2px dashed rgba(240,192,48,.28);cursor:pointer;transition:border-color var(--T)
+}
+.gal-item:hover{border-color:var(--or)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-ov{
+  position:absolute;inset:0;background:rgba(0,0,0,.58);
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--T)
+}
+.gal-item:hover .gal-ov{opacity:1}
+.gal-ov i{font-size:1.9rem;color:var(--or)}
+.gal-zone{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.7rem;height:100%;color:var(--gris);font-size:.83rem;text-align:center;padding:1rem
+}
+.gal-zone i{font-size:2.3rem;color:var(--or);opacity:.48}
+.gal-zone strong{color:var(--or);font-size:.88rem}
+.gal-item input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+/* lightbox */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center}
+.lb.on{display:flex}
+.lb img{max-width:90%;max-height:85vh;border-radius:var(--radius)}
+.lb-x{position:absolute;top:18px;right:26px;font-size:2.4rem;color:var(--or);cursor:pointer;background:none;border:none;line-height:1}
+
+/* ============================
+   PAGE — RÉSERVATION
+   ============================ */
+#pg-resa .head{text-align:center;margin-bottom:3rem}
+.resa-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;max-width:980px;margin:0 auto}
+.resa-info h3{font-family:var(--serif);font-size:1.45rem;color:var(--or);margin-bottom:1rem}
+.resa-info p{color:var(--gris);font-size:.88rem;margin-bottom:1.4rem}
+.resa-rows{display:flex;flex-direction:column;gap:.75rem}
+.resa-row{display:flex;align-items:center;gap:.8rem;font-size:.88rem;color:rgba(245,240,232,.8)}
+.resa-row i{color:var(--or);width:18px}
+/* champs */
+.fg{margin-bottom:1.15rem}
+.fg label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);margin-bottom:.45rem}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--noir2);border:1px solid rgba(240,192,48,.18);
+  border-radius:var(--radius);padding:11px 15px;color:var(--blanc);
+  font-family:var(--sans);font-size:.88rem;outline:none;transition:border-color var(--T)
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(240,192,48,.09)}
+.fg select option{background:var(--noir2)}
+.fg textarea{resize:vertical;min-height:110px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* ============================
+   PAGE — CONTACT
+   ============================ */
+#pg-contact{grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.ct-info .ttl{text-align:left}
+.ct-info .div{margin-left:0;margin-bottom:2rem}
+.ct-items{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2rem}
+.ct-item{display:flex;align-items:flex-start;gap:.9rem}
+.ct-ico{width:42px;height:42px;background:rgba(240,192,48,.08);border:1px solid rgba(240,192,48,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or);flex-shrink:0}
+.ct-txt span{font-size:.73rem;text-transform:uppercase;color:var(--gris)}
+.ct-txt a,.ct-txt p{font-size:.92rem;color:var(--blanc)}
+.ct-txt a:hover{color:var(--or)}
+.hr-ttl{font-family:var(--serif);color:var(--or);font-size:.95rem;margin-bottom:.7rem;letter-spacing:1px}
+.hr-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(240,192,48,.1);font-size:.83rem;color:rgba(245,240,232,.68)}
+.hr-row span:last-child{color:var(--or)}
+.ct-form-ttl{font-family:var(--serif);color:var(--or);font-size:1.45rem;margin-bottom:1.4rem}
+
+/* ============================
+   PAGE — AVIS
+   ============================ */
+#pg-avis .head{text-align:center;margin-bottom:3rem}
+.avis-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:3.5rem;max-width:1100px;margin:0 auto}
+.avis-list{display:flex;flex-direction:column;gap:1.1rem}
+.avis-card{
+  background:var(--noir2);border:1px solid rgba(240,192,48,.13);
+  border-radius:var(--radius);padding:1.4rem;transition:border-color var(--T)
+}
+.avis-card:hover{border-color:rgba(240,192,48,.38)}
+.avis-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.avis-who{display:flex;align-items:center;gap:.75rem}
+.av{width:38px;height:38px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;color:var(--noir);flex-shrink:0}
+.avis-name{font-weight:600;font-size:.92rem}
+.avis-date{font-size:.72rem;color:var(--gris)}
+.stars{color:var(--or);font-size:.88rem}
+.avis-txt{font-size:.86rem;color:rgba(245,240,232,.72);line-height:1.6}
+.avis-tag{display:inline-block;background:rgba(240,192,48,.09);color:var(--or);font-size:.7rem;padding:3px 10px;border-radius:20px;margin-top:.6rem;letter-spacing:1px;text-transform:uppercase}
+/* formulaire avis */
+.avis-form-box .form-ttl{font-family:var(--serif);font-size:1.35rem;color:var(--or);margin-bottom:1.4rem}
+.star-pick{display:flex;gap:.35rem;flex-direction:row-reverse;justify-content:flex-end;margin-bottom:.4rem}
+.star-pick input{display:none}
+.star-pick label{font-size:1.55rem;color:var(--gris);cursor:pointer;transition:color var(--T)}
+.star-pick label:hover,.star-pick label:hover~label,.star-pick input:checked~label{color:var(--or)}
+.avis-ok{display:none;background:rgba(240,192,48,.09);border:1px solid var(--or);border-radius:var(--radius);padding:1rem;text-align:center;color:var(--or);margin-top:.9rem}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer{
+  background:#060606;border-top:1px solid rgba(240,192,48,.13);
+  padding:55px 5% 28px
+}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+.foot-brand p{color:var(--gris);font-size:.86rem;max-width:270px;margin-top:.8rem}
+.foot-h{font-family:var(--serif);color:var(--or);font-size:.95rem;margin-bottom:1.1rem;letter-spacing:1px}
+.foot-links{display:flex;flex-direction:column;gap:.55rem}
+.foot-links a{color:var(--gris);font-size:.86rem;transition:color var(--T);cursor:pointer}
+.foot-links a:hover{color:var(--or)}
+.socials{display:flex;gap:.75rem;margin-top:1.4rem}
+.soc{width:38px;height:38px;border:1px solid rgba(240,192,48,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gris);font-size:.88rem;transition:all var(--T)}
+.soc:hover{background:var(--or);color:var(--noir);border-color:var(--or)}
+.foot-bot{border-top:1px solid rgba(240,192,48,.09);padding-top:1.3rem;display:flex;justify-content:space-between;font-size:.8rem;color:var(--gris);flex-wrap:wrap;gap:.8rem}
+
+/* ============================
+   FLOTTANTS
+   ============================ */
+.wa-btn{
+  position:fixed;bottom:28px;left:28px;width:54px;height:54px;
+  background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.55rem;z-index:900;box-shadow:0 4px 18px rgba(37,211,102,.4);
+  transition:transform var(--T);text-decoration:none
+}
+.wa-btn:hover{transform:scale(1.1)}
+#top-btn{
+  position:fixed;bottom:28px;right:28px;width:44px;height:44px;
+  background:var(--or);color:var(--noir);border:none;border-radius:50%;
+  font-size:.95rem;cursor:pointer;z-index:900;
+  opacity:0;transform:translateY(18px);transition:opacity var(--T),transform var(--T);
+  display:flex;align-items:center;justify-content:center
+}
+#top-btn.on{opacity:1;transform:none}
+#top-btn:hover{background:var(--or2)}
+.toast{
+  position:fixed;bottom:95px;right:28px;background:var(--noir2);
+  border:1px solid var(--or);border-radius:var(--radius);padding:11px 18px;
+  color:var(--blanc);font-size:.86rem;z-index:9999;
+  transform:translateX(130%);transition:transform .38s ease;white-space:nowrap
+}
+.toast.on{transform:none}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media(max-width:900px){
+  #pg-about.on,#pg-contact.on{grid-template-columns:1fr;gap:3rem}
+  .resa-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .avis-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  nav{
+    display:none;flex-direction:column;position:absolute;
+    top:68px;left:0;right:0;background:rgba(10,10,10,.98);
+    padding:1.8rem 5%;gap:1.4rem;border-bottom:1px solid rgba(240,192,48,.18)
+  }
+  nav.open{display:flex}
+  .hbg{display:flex}
+  .hero-btns{flex-direction:column;align-items:center}
+  .row2{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column;text-align:center}
+  .logo-circle{width:130px;height:130px}
+  .logo-circle img{width:85px;height:85px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="hdr">
+  <div class="logo" onclick="go('home')">EL MINO <span>Coiffure</span></div>
+  <nav id="nav">
+    <a onclick="go('about')">À Propos</a>
+    <a onclick="go('services')">Services</a>
+    <a onclick="go('gallery')">Galerie</a>
+    <a onclick="go('avis')">Avis</a>
+    <a onclick="go('contact')">Contact</a>
+    <a onclick="go('resa')" class="nav-rdv">Réserver</a>
+  </nav>
+  <button class="hbg" id="hbg" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ===================== PAGE ACCUEIL ===================== -->
+<section id="pg-home" class="page on">
+  <div class=".hero-wrap{max-width:740px;padding:0 5%;width:100%}">
+
+    <!--
+    ============================================================
+    👉 LOGO : place ton fichier dans /images/ et renomme-le logo.png
+       Si pas de logo, le texte EL MINO s'affiche automatiquement
+    ============================================================
+    -->
+    <div class="logo-circle">
+      <img src="images/logo.png" alt="EL MINO" onerror="this.style.display='none';document.getElementById('lf').style.display='block'"/>
+      <span class="logo-fallback" id="lf" style="display:none">EM</span>
+    </div>
+
+    <h1 class="hero-title">L'art de la coupe,<br><span>à votre service</span></h1>
+    <p class="hero-sub">Bienvenue chez EL MINO Coiffure — où chaque coupe est une œuvre, chaque client une priorité.</p>
+    <div class="hero-btns">
+      <button class="btn btn-gold" onclick="go('resa')"><i class="fas fa-calendar-check"></i> Prendre RDV</button>
+      <button class="btn btn-out" onclick="go('services')">Voir nos services</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAGE À PROPOS ===================== -->
+<section id="pg-about" class="page">
+
+  <div class="about-img-box">
+    <!--
+    ============================================================
+    👉 IMAGE SALON :
+       Décommente la ligne img et remplace salon.jpg
+       Puis supprime le bloc about-ph
+    ============================================================
+    -->
+    <!-- <img src="images/salon.jpg" alt="Salon EL MINO"/> -->
+    <img src="images/principal.jpg" alt="Salon EL MINO"/>
+  </div>
+
+  <div>
+    <h2 class="ttl">Notre Histoire</h2>
+    <div class="div"></div>
+    <p class="about-p">EL MINO Coiffure est bien plus qu'un salon — c'est un espace où style, soin et savoir-faire se rencontrent. Notre équipe passionnée vous accueille dans une ambiance chaleureuse et raffinée.</p>
+    <p class="about-p">Que vous veniez pour une coupe classique, une coloration tendance ou un soin capillaire profond, nous mettons tout notre art à votre disposition pour sublimer votre look.</p>
+    <p class="about-p">Chaque client est unique. C'est pourquoi chaque prestation est personnalisée pour correspondre à votre style, votre visage et vos envies.</p>
+    <div class="stats">
+      <div class="stat"><span>500+</span><span>Clients satisfaits</span></div>
+      <div class="stat"><span>5+</span><span>Ans d'expérience</span></div>
+      <div class="stat"><span>100%</span><span>Passion</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== PAGE SERVICES ===================== -->
+<section id="pg-services" class="page">
+  <div class="head">
+    <h2 class="ttl">Nos Prestations</h2>
+    <div class="div" style="margin:0 auto 1rem"></div>
+    <p style="color:var(--gris);font-size:.9rem;text-transform:uppercase;letter-spacing:1px">Des services pensés pour vous sublimer</p>
+  </div>
+  <div class="srv-grid">
+
+    <!-- Coupe Homme -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/coupe-homme.jpg" alt="Coupe Homme"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">✂️</div>
+        <h3 class="srv-name">Coupe Homme</h3>
+        <p class="srv-desc">Coupe classique ou moderne, adaptée à votre morphologie.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Coupe Femme -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/femme.jpg" alt="Coupe Femme"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">💇‍♀️</div>
+        <h3 class="srv-name">Coupe Femme</h3>
+        <p class="srv-desc">Coupes tendance, coiffures de soirée et brushing.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Barbe -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/barbe.jpg" alt="Barbe"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">🪒</div>
+        <h3 class="srv-name">Taille de Barbe</h3>
+        <p class="srv-desc">Rasage traditionnel et modelage de barbe précis.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Coloration -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/Coloration.jpg" alt="Coloration"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">🎨</div>
+        <h3 class="srv-name">Coloration</h3>
+        <p class="srv-desc">Couleur, balayage, ombré hair — des teintes éclatantes.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Soin -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/soin (1).jpg" alt="Soin Capillaire"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">🌿</div>
+        <h3 class="srv-name">Soin Capillaire</h3>
+        <p class="srv-desc">Masques et traitements nutritifs pour des cheveux sains.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Forfait -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/forfait.jpg" alt="Forfait Complet"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">⭐</div>
+        <h3 class="srv-name">Forfait Complet</h3>
+        <p class="srv-desc">Coupe + Barbe + Soin — la transformation totale.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Enfant -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/enfant.jpg" alt="Coupe Enfant"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">🧒</div>
+        <h3 class="srv-name">Coupe Enfant</h3>
+        <p class="srv-desc">Coupe douce et soignée pour les plus petits, dans la bonne humeur.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+    <!-- Bébé -->
+    <div class="srv">
+      <div class="srv-img">
+        <img src="images/bebe.jpg" alt="Coupe Bébé"/>
+      </div>
+      <div class="srv-body">
+        <div class="srv-em">👶</div>
+        <h3 class="srv-name">Coupe Bébé</h3>
+        <p class="srv-desc">Première coupe en douceur pour les tout-petits, avec patience et tendresse.</p>
+        <span class="srv-price">Prix selon votre choix</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- galerie -->
+<section id="pg-gallery" class="page">
+  <div class="head">
+    <h2 class="ttl">Galerie</h2>
+    <div class="div" style="margin:0 auto 1rem"></div>
+    <p style="color:var(--gris);font-size:.9rem;text-transform:uppercase;letter-spacing:1px">Nos réalisations en images</p>
+  </div>
+
+  <div class="gal-grid">
+    <div class="gal-item" id="g1">
+      <img src="images/galerie (1).jpg" alt="Réalisation 1"/>
+      <div class="gal-ov" onclick="lb('images/galerie (1).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g2">
+      <img src="images/galerie (2).jpg" alt="Réalisation 2"/>
+      <div class="gal-ov" onclick="lb('images/galerie (2).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g3">
+      <img src="images/galerie (3).jpg" alt="Réalisation 3"/>
+      <div class="gal-ov" onclick="lb('images/galerie (3).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g4">
+      <img src="images/galerie (4).jpg" alt="Réalisation 4"/>
+      <div class="gal-ov" onclick="lb('images/galerie (4).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g5">
+      <img src="images/galerie (5).jpg" alt="Réalisation 5"/>
+      <div class="gal-ov" onclick="lb('images/galerie (5).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g6">
+      <img src="images/galerie (6).jpg" alt="Réalisation 6"/>
+      <div class="gal-ov" onclick="lb('images/galerie (6).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g7">
+      <img src="images/galerie (7).jpg" alt="Réalisation 7"/>
+      <div class="gal-ov" onclick="lb('images/galerie (7).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+    <div class="gal-item" id="g8">
+      <img src="images/galerie (8).jpg" alt="Réalisation 8"/>
+      <div class="gal-ov" onclick="lb('images/galerie (8).jpg')"><i class="fas fa-expand"></i></div>
+    </div>
+  </div>
+
+  <div class="lb" id="lbox" onclick="if(event.target===this)closeLb()">
+    <button class="lb-x" onclick="closeLb()">×</button>
+    <img id="lbimg" src="" alt="Photo"/>
+  </div>
+</section>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lbox" onclick="if(event.target===this)closeLb()">
+    <button class="lb-x" onclick="closeLb()">×</button>
+    <img id="lbimg" src="" alt="Photo"/>
+  </div>
+</section>
+
+<!-- ===================== PAGE RÉSERVATION ===================== -->
+<section id="pg-resa" class="page">
+  <div class="head">
+    <h2 class="ttl">Réservation</h2>
+    <div class="div" style="margin:0 auto 1rem"></div>
+    <p style="color:var(--gris);font-size:.9rem;text-transform:uppercase;letter-spacing:1px">Prenez rendez-vous en quelques secondes</p>
+  </div>
+  <div class="resa-wrap">
+    <div class="resa-info">
+      <h3>Réservez votre moment</h3>
+      <p>Remplissez le formulaire ci-contre, votre demande sera envoyée directement sur notre WhatsApp. Confirmation sous 30 min.</p>
+      <div class="resa-rows">
+        <div class="resa-row"><i class="fab fa-whatsapp"></i> Confirmation par WhatsApp</div>
+        <div class="resa-row"><i class="fas fa-clock"></i> Réponse sous 30 minutes</div>
+        <div class="resa-row"><i class="fas fa-calendar-alt"></i> Disponible 7j/7</div>
+        <div class="resa-row"><i class="fas fa-phone"></i> <a href="tel:+22871116581">+228 71 11 65 81</a></div>
+      </div>
+    </div>
+    <form onsubmit="sendResa(event)">
+      <div class="fg"><label>Nom complet *</label><input type="text" id="rn" placeholder="Jean Dupont" required/></div>
+      <div class="fg"><label>Téléphone *</label><input type="tel" id="rt" placeholder="+228 XX XX XX XX" required/></div>
+      <div class="fg">
+        <label>Service *</label>
+        <select id="rs" required>
+          <option value="">— Choisir —</option>
+          <option>✂️ Coupe Homme</option>
+          <option>💇‍♀️ Coupe Femme</option>
+          <option>🪒 Taille de Barbe</option>
+          <option>🎨 Coloration</option>
+          <option>🌿 Soin Capillaire</option>
+          <option>⭐ Forfait Complet</option>
+          <option>🧒 Coupe Enfant</option>
+          <option>👶 Coupe Bébé</option>
+        </select>
+      </div>
+      <div class="row2">
+        <div class="fg"><label>Date *</label><input type="date" id="rd" required/></div>
+        <div class="fg"><label>Heure *</label><input type="time" id="rh" min="08:00" max="20:00" required/></div>
+      </div>
+      <div class="fg"><label>Note (optionnel)</label><textarea id="rnote" placeholder="Précisions..."></textarea></div>
+      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center"><i class="fab fa-whatsapp"></i> Envoyer la demande RDV</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== PAGE CONTACT ===================== -->
+<section id="pg-contact" class="page">
+  <div class="ct-info">
+    <h2 class="ttl">Contact</h2>
+    <div class="div"></div>
+    <div class="ct-items">
+      <div class="ct-item">
+        <div class="ct-ico"><i class="fas fa-phone"></i></div>
+        <div class="ct-txt"><span>Téléphone / WhatsApp</span><a href="tel:+22871116581">+228 71 11 65 81</a></div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-ico"><i class="fas fa-envelope"></i></div>
+        <div class="ct-txt">
+          <span>Email</span>
+          <!-- 👉 Remplace par ton email -->
+          <a href="mailto:laminouarouna76@gmail.com">laminouarouna76@gmail.com</a>
+        </div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="ct-txt">
+          <span>Adresse</span>
+          <!-- 👉 Remplace par ton adresse -->
+          <p>Sokodé, Togo — Quartier Kpangal-Zaire</p>
+        </div>
+      </div>
+    </div>
+    <p class="hr-ttl">Horaires d'ouverture</p>
+    <div class="hr-row"><span>Lundi – Vendredi</span><span>08h – 20h</span></div>
+    <div class="hr-row"><span>Samedi</span><span>08h – 21h</span></div>
+    <div class="hr-row"><span>Dimanche</span><span>10h – 20h</span></div>
+  </div>
+
+  <div>
+    <p class="ct-form-ttl">Envoyez-nous un message</p>
+    <form onsubmit="sendMail(event)">
+      <div class="fg"><label>Votre nom *</label><input type="text" id="cn" placeholder="Nom complet" required/></div>
+      <div class="fg"><label>Votre email *</label><input type="email" id="ce" placeholder="votre@email.com" required/></div>
+      <div class="fg">
+        <label>Sujet *</label>
+        <select id="cs" required>
+          <option value="">— Objet —</option>
+          <option>Demande de renseignement</option>
+          <option>Tarifs et prestations</option>
+          <option>Demande de partenariat</option>
+          <option>Réclamation</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message *</label><textarea id="cm" placeholder="Votre message..." required></textarea></div>
+      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== PAGE AVIS ===================== -->
+<section id="pg-avis" class="page">
+  <div class="head">
+    <h2 class="ttl">Avis Clients</h2>
+    <div class="div" style="margin:0 auto 1rem"></div>
+    <p style="color:var(--gris);font-size:.9rem;text-transform:uppercase;letter-spacing:1px">Ce que nos clients disent de nous</p>
+  </div>
+  <div class="avis-wrap">
+
+    <div class="avis-list" id="avisLst">
+      <div class="avis-card">
+        <div class="avis-top">
+          <div class="avis-who"><div class="av">K</div><div><div class="avis-name">El Anowar.</div><div class="avis-date">15 jan. 2025</div></div></div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <p class="avis-txt">Excellent salon ! Le coiffeur est très professionnel et à l'écoute. J'ai eu exactement la coupe que je voulais. Je reviendrai !</p>
+        <span class="avis-tag">Coupe Homme</span>
+      </div>
+      <div class="avis-card">
+        <div class="avis-top">
+          <div class="avis-who"><div class="av">A</div><div><div class="avis-name">Fatach 228.</div><div class="avis-date">3 fév. 2025</div></div></div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <p class="avis-txt">Superbe expérience ! La coloration est magnifique. Personnel chaleureux, salon propre. Je recommande vivement !</p>
+        <span class="avis-tag">Coloration</span>
+      </div>
+      <div class="avis-card">
+        <div class="avis-top">
+          <div class="avis-who"><div class="av">Y</div><div><div class="avis-name">Sado P.</div><div class="avis-date">20 fév. 2025</div></div></div>
+          <div class="stars">★★★★☆</div>
+        </div>
+        <p class="avis-txt">Très bonne adresse pour la barbe. Rasage propre et précis. Prix raisonnables !</p>
+        <span class="avis-tag">Taille de Barbe</span>
+      </div>
+    </div>
+
+    <div class="avis-form-box">
+      <p class="form-ttl">✍️ Laisser votre avis</p>
+      <form onsubmit="postAvis(event)">
+        <div class="fg"><label>Votre prénom *</label><input type="text" id="an" placeholder="Ex: Jean" required maxlength="30"/></div>
+        <div class="fg">
+          <label>Service reçu *</label>
+          <select id="as" required>
+            <option value="">— Service —</option>
+            <option>✂️ Coupe Homme</option>
+            <option>💇‍♀️ Coupe Femme</option>
+            <option>🪒 Taille de Barbe</option>
+            <option>🎨 Coloration</option>
+            <option>🌿 Soin Capillaire</option>
+            <option>⭐ Forfait Complet</option>
+              <option>🧒 Coupe Enfant</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Note *</label>
+          <div class="star-pick">
+            <input type="radio" name="nt" id="s5" value="5" required/><label for="s5">★</label>
+            <input type="radio" name="nt" id="s4" value="4"/><label for="s4">★</label>
+            <input type="radio" name="nt" id="s3" value="3"/><label for="s3">★</label>
+            <input type="radio" name="nt" id="s2" value="2"/><label for="s2">★</label>
+            <input type="radio" name="nt" id="s1" value="1"/><label for="s1">★</label>
+          </div>
+        </div>
+        <div class="fg"><label>Commentaire *</label><textarea id="am" placeholder="Partagez votre expérience..." required maxlength="400" rows="4"></textarea></div>
+        <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center"><i class="fas fa-star"></i> Publier mon avis</button>
+        <div class="avis-ok" id="avisOk"><i class="fas fa-check-circle" style="font-size:1.4rem;display:block;margin-bottom:.4rem"></i>Merci ! Votre avis a été publié.</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="logo">EL MINO <span>Coiffure</span></div>
+      <p>Votre salon de coiffure de confiance à Sokodé. Qualité, style et passion au service de votre image.</p>
+      <div class="socials">
+        <!-- 👉 Remplace # par tes vrais liens réseaux sociaux -->
+        <a href="#" class="soc" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="soc" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/22871116581" class="soc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="soc" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div>
+      <p class="foot-h">Navigation</p>
+      <div class="foot-links">
+        <a onclick="go('home')">Accueil</a>
+        <a onclick="go('about')">À Propos</a>
+        <a onclick="go('services')">Services</a>
+        <a onclick="go('gallery')">Galerie</a>
+        <a onclick="go('resa')">Réservation</a>
+        <a onclick="go('avis')">Avis</a>
+        <a onclick="go('contact')">Contact</a>
+      </div>
+    </div>
+    <div>
+      <p class="foot-h">Contact rapide</p>
+      <div class="foot-links">
+        <a href="tel:+22871116581"><i class="fas fa-phone" style="color:var(--or);margin-right:.5rem"></i>+228 71 11 65 81</a>
+        <a href="mailto:laminouarouna76@gmail.com"><i class="fas fa-envelope" style="color:var(--or);margin-right:.5rem"></i>elmino.coiffure@gmail.com</a>
+        <a href="https://wa.me/22871116581" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:.5rem"></i>WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2025 EL MINO Coiffure. Tous droits réservés.</span>
+    <span>Sokodé, Togo</span>
+  </div>
+</footer>
+
+<!-- WhatsApp flottant -->
+<a href="https://wa.me/22871116581" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
+<!-- Retour en haut -->
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+<!-- Toast -->
+<div class="toast" id="tst"></div>
+
+<script>
+/* ====== NAVIGATION SPA ====== */
+const PAGES = ['home','about','services','gallery','resa','contact','avis'];
+
+function go(id){
+  PAGES.forEach(p=>{
+    const el=document.getElementById('pg-'+p);
+    if(el) el.classList.remove('on');
+  });
+  const t=document.getElementById('pg-'+id);
+  if(t){ t.classList.add('on'); window.scrollTo({top:0,behavior:'smooth'}); }
+  // nav active
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+  // ferme menu mobile
+  document.getElementById('nav').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
+}
+
+/* ====== HAMBURGER ====== */
+function toggleMenu(){
+  document.getElementById('nav').classList.toggle('open');
+  document.getElementById('hbg').classList.toggle('open');
+}
+
+/* ====== SCROLL EVENTS ====== */
+window.addEventListener('scroll',()=>{
+  document.getElementById('hdr').style.boxShadow=window.scrollY>40?'0 4px 20px rgba(240,192,48,.14)':'none';
+  document.getElementById('top-btn').classList.toggle('on',window.scrollY>300);
+});
+
+/* ====== DATE MIN RÉSERVATION ====== */
+document.addEventListener('DOMContentLoaded',()=>{
+  const d=document.getElementById('rd');
+  if(d) d.min=new Date().toISOString().split('T')[0];
+  // fermer lightbox avec Echap
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
+});
+
+/* ====== RÉSERVATION → WHATSAPP ====== */
+function sendResa(e){
+  e.preventDefault();
+  const n=document.getElementById('rn').value.trim();
+  const t=document.getElementById('rt').value.trim();
+  const s=document.getElementById('rs').value;
+  const d=document.getElementById('rd').value;
+  const h=document.getElementById('rh').value;
+  const note=document.getElementById('rnote').value.trim();
+  const df=d?new Date(d).toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):d;
+  let m=`*📅 Demande de RDV — EL MINO Coiffure*\n\n👤 Nom : ${n}\n📞 Tél : ${t}\n✂️ Service : ${s}\n📆 Date : ${df}\n🕐 Heure : ${h}`;
+  if(note) m+=`\n📝 Note : ${note}`;
+  m+=`\n\n_Envoyé depuis le site EL MINO Coiffure_`;
+  window.open(`https://wa.me/22871116581?text=${encodeURIComponent(m)}`,'_blank');
+  toast('✅ Redirection WhatsApp...');
+  e.target.reset();
+}
+
+/* ====== CONTACT → EMAIL ====== */
+function sendMail(e){
+  e.preventDefault();
+  const n=document.getElementById('cn').value.trim();
+  const em=document.getElementById('ce').value.trim();
+  const s=document.getElementById('cs').value;
+  const m=document.getElementById('cm').value.trim();
+  const sub=`[EL MINO] ${s} — ${n}`;
+  const body=`Bonjour,\n\nNom : ${n}\nEmail : ${em}\nSujet : ${s}\n\nMessage :\n${m}\n\n---\nEnvoyé depuis le site EL MINO Coiffure`;
+  window.location.href=`mailto:laminouarouna76@gmail.com.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+  toast('📧 Ouverture de votre client mail...');
+  e.target.reset();
+}
+
+/* ====== GALERIE ====== */
+function addPhoto(input,id){
+  if(!input.files||!input.files[0]) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const src=ev.target.result;
+    el.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover"/><div class="gal-ov" onclick="lb('${src}')"><i class="fas fa-expand"></i></div>`;
+    el.style.border='2px solid rgba(240,192,48,.4)';
+    toast('✅ Photo ajoutée !');
+  };
+  r.readAsDataURL(input.files[0]);
+}
+function lb(src){
+  document.getElementById('lbimg').src=src;
+  document.getElementById('lbox').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lbox').classList.remove('on');
+  document.body.style.overflow='';
+}
+
+/* ====== AVIS ====== */
+function postAvis(e){
+  e.preventDefault();
+  const n=document.getElementById('an').value.trim();
+  const s=document.getElementById('as').value;
+  const m=document.getElementById('am').value.trim();
+  const nt=document.querySelector('input[name="nt"]:checked');
+  if(!nt){ toast('⚠️ Choisissez une note'); return; }
+  const v=parseInt(nt.value);
+  const stars='★'.repeat(v)+'☆'.repeat(5-v);
+  const date=new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  const card=document.createElement('div');
+  card.className='avis-card';
+  card.style.animation='pIn .4s ease';
+  card.innerHTML=`
+    <div class="avis-top">
+      <div class="avis-who"><div class="av">${x(n[0].toUpperCase())}</div>
+      <div><div class="avis-name">${x(n)}</div><div class="avis-date">${date}</div></div></div>
+      <div class="stars">${stars}</div>
+    </div>
+    <p class="avis-txt">${x(m)}</p>
+    <span class="avis-tag">${x(s)}</span>`;
+  const lst=document.getElementById('avisLst');
+  lst.insertBefore(card,lst.firstChild);
+  e.target.reset();
+  const ok=document.getElementById('avisOk');
+  ok.style.display='block';
+  setTimeout(()=>ok.style.display='none',4000);
+  toast('⭐ Merci pour votre avis !');
+}
+
+/* ====== TOAST ====== */
+function toast(msg){
+  const t=document.getElementById('tst');
+  t.textContent=msg; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),3200);
+}
+
+/* ====== SECURITE XSS ====== */
+function x(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+</script>
+</body>
+</html>
