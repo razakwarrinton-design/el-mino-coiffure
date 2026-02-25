@@ -855,14 +855,14 @@ function sendResa(e){
   const note=document.getElementById('rnote').value.trim();
   const df=d?new Date(d).toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):d;
 
-  let m = 'DEMANDE DE RDV - EL MINO Coiffure\n\n';
-  m += 'Nom : ' + n + '\n';
-  m += 'Tel : ' + t + '\n';
-  m += 'Service : ' + s + '\n';
-  m += 'Date : ' + df + '\n';
-  m += 'Heure : ' + h + '\n';
-  if(note) m += 'Note : ' + note + '\n';
-  m += '\nEnvoye depuis le site EL MINO Coiffure';
+  let m = '*DEMANDE DE RDV - EL MINO Coiffure*\n\n';
+  m += '*Nom :* ' + n + '\n';
+  m += '*Tel :* ' + t + '\n';
+  m += '*Service :* ' + s + '\n';
+  m += '*Date :* ' + df + '\n';
+  m += '*Heure :* ' + h + '\n';
+  if(note) m += '*Note :* ' + note + '\n';
+  m += '\n_Envoye depuis le site EL MINO Coiffure_';
 
   window.open('https://wa.me/22871116581?text=' + encodeURIComponent(m),'_blank');
   toast('Redirection WhatsApp...');
