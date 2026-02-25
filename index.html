@@ -878,10 +878,10 @@ function sendMail(e){
   const em=document.getElementById('ce').value.trim();
   const s=document.getElementById('cs').value;
   const m=document.getElementById('cm').value.trim();
-  const sub=`[EL MINO] ${s} — ${n}`;
-  const body=`Bonjour,\n\nNom : ${n}\nEmail : ${em}\nSujet : ${s}\n\nMessage :\n${m}\n\n---\nEnvoyé depuis le site EL MINO Coiffure`;
-  window.location.href=`mailto:laminouarouna76@gmail.com.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
-  toast('📧 Ouverture de votre client mail...');
+  const sub='[EL MINO] ' + s + ' - ' + n;
+  const body='Bonjour,\n\nNom : ' + n + '\nEmail : ' + em + '\nSujet : ' + s + '\n\nMessage :\n' + m + '\n\n---\nEnvoye depuis le site EL MINO Coiffure';
+  window.location.href='mailto:laminouarouna76@gmail.com?subject=' + encodeURIComponent(sub) + '&body=' + encodeURIComponent(body);
+  toast('Ouverture de votre client mail...');
   e.target.reset();
 }
 
