@@ -611,14 +611,14 @@ footer{
         <label>Service *</label>
         <select id="rs" required>
           <option value="">— Choisir —</option>
-          <option>✂️ Coupe Homme</option>
-          <option>💇‍♀️ Coupe Femme</option>
-          <option>🪒 Taille de Barbe</option>
-          <option>🎨 Coloration</option>
-          <option>🌿 Soin Capillaire</option>
-          <option>⭐ Forfait Complet</option>
-          <option>🧒 Coupe Enfant</option>
-          <option>👶 Coupe Bébé</option>
+          <option> Coupe Homme</option>
+          <option> Coupe Femme</option>
+          <option> Taille de Barbe</option>
+          <option> Coloration</option>
+          <option> Soin Capillaire</option>
+          <option> Forfait Complet</option>
+          <option> Coupe Enfant</option>
+          <option> Coupe Bébé</option>
         </select>
       </div>
       <div class="row2">
@@ -730,13 +730,13 @@ footer{
           <label>Service reçu *</label>
           <select id="as" required>
             <option value="">— Service —</option>
-            <option>✂️ Coupe Homme</option>
-            <option>💇‍♀️ Coupe Femme</option>
-            <option>🪒 Taille de Barbe</option>
-            <option>🎨 Coloration</option>
-            <option>🌿 Soin Capillaire</option>
-            <option>⭐ Forfait Complet</option>
-              <option>🧒 Coupe Enfant</option>
+            <option> Coupe Homme</option>
+            <option> Coupe Femme</option>
+            <option> Taille de Barbe</option>
+            <option> Coloration</option>
+            <option> Soin Capillaire</option>
+            <option> Forfait Complet</option>
+              <option> Coupe Enfant</option>
           </select>
         </div>
         <div class="fg">
@@ -854,11 +854,18 @@ function sendResa(e){
   const h=document.getElementById('rh').value;
   const note=document.getElementById('rnote').value.trim();
   const df=d?new Date(d).toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):d;
-  let m=`*📅 Demande de RDV — EL MINO Coiffure*\n\n👤 Nom : ${n}\n📞 Tél : ${t}\n✂️ Service : ${s}\n📆 Date : ${df}\n🕐 Heure : ${h}`;
-  if(note) m+=`\n📝 Note : ${note}`;
-  m+=`\n\n_Envoyé depuis le site EL MINO Coiffure_`;
-  window.open(`https://wa.me/22871116581?text=${encodeURIComponent(m)}`,'_blank');
-  toast('✅ Redirection WhatsApp...');
+
+  let m = 'DEMANDE DE RDV - EL MINO Coiffure\n\n';
+  m += 'Nom : ' + n + '\n';
+  m += 'Tel : ' + t + '\n';
+  m += 'Service : ' + s + '\n';
+  m += 'Date : ' + df + '\n';
+  m += 'Heure : ' + h + '\n';
+  if(note) m += 'Note : ' + note + '\n';
+  m += '\nEnvoye depuis le site EL MINO Coiffure';
+
+  window.open('https://wa.me/22871116581?text=' + encodeURIComponent(m),'_blank');
+  toast('Redirection WhatsApp...');
   e.target.reset();
 }
 
