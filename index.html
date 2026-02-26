@@ -131,7 +131,7 @@ nav a:hover::after,nav a.on::after{width:100%}
    PAGE — À PROPOS
    ============================ */
 #pg-about{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
-.about-img-box{width:100% !important;max-width:100% !important;margin-bottom:1.5rem;flex-shrink:0}
+.about-img-box{position:relative;order:1}
 .about-img-box::before{content:'';position:absolute;inset:-8px;border:2px solid var(--or);border-radius:18px;z-index:0}
 .about-img-box img,.about-ph{
   width:100%;height:280px;object-fit:cover;border-radius:var(--radius);position:relative;z-index:1
@@ -365,7 +365,7 @@ footer{
   .about-img-box{width:100% !important;max-width:100% !important;margin-bottom:1rem;order:0 !important;flex-shrink:0}
 #pg-about > div:first-child{order:1 !important}
   .about-img-box::before{display:none}
-  .about-img-box img,.about-ph{height:350px;width:100%;object-fit:cover}
+  .about-img-box img,.about-ph{height:250px;width:100%}
   #pg-about.on{display:flex !important;flex-direction:column !important;gap:2rem !important;width:100%}
   #pg-about > div:last-child{width:100%;word-wrap:break-word;overflow-wrap:break-word}
   .foot-col{text-align:center}
@@ -424,25 +424,21 @@ footer{
 <!-- ===================== PAGE À PROPOS ===================== -->
 <section id="pg-about" class="page">
 
-  <div style="display:flex;flex-direction:column;width:100%;gap:2rem">
-    
-    <div class="about-img-box" style="width:100%">
-      <img src="images/principal.jpg" alt="Salon EL MINO" style="width:100%;height:400px;object-fit:cover;border-radius:10px"/>
-    </div>
+  <div class="about-img-box">
+    <img src="images/principal.jpg" alt="Salon EL MINO"/>
+  </div>
 
-    <div style="text-align:center">
-      <h2 class="ttl">Notre Histoire</h2>
-      <div class="div" style="margin:0 auto 1.5rem"></div>
-      <p class="about-p">EL MINO Coiffure est bien plus qu'un salon — c'est un espace où style, soin et savoir-faire se rencontrent. Notre équipe passionnée vous accueille dans une ambiance chaleureuse et raffinée.</p>
-      <p class="about-p">Que vous veniez pour une coupe classique, une coloration tendance ou un soin capillaire profond, nous mettons tout notre art à votre disposition pour sublimer votre look.</p>
-      <p class="about-p">Chaque client est unique. C'est pourquoi chaque prestation est personnalisée pour correspondre à votre style, votre visage et vos envies.</p>
-      <div class="stats" style="justify-content:center">
-        <div class="stat"><span>500+</span><span>Clients satisfaits</span></div>
-        <div class="stat"><span>5+</span><span>Ans d'expérience</span></div>
-        <div class="stat"><span>100%</span><span>Passion</span></div>
-      </div>
+  <div>
+    <h2 class="ttl">Notre Histoire</h2>
+    <div class="div"></div>
+    <p class="about-p">EL MINO Coiffure est bien plus qu'un salon — c'est un espace où style, soin et savoir-faire se rencontrent. Notre équipe passionnée vous accueille dans une ambiance chaleureuse et raffinée.</p>
+    <p class="about-p">Que vous veniez pour une coupe classique, une coloration tendance ou un soin capillaire profond, nous mettons tout notre art à votre disposition pour sublimer votre look.</p>
+    <p class="about-p">Chaque client est unique. C'est pourquoi chaque prestation est personnalisée pour correspondre à votre style, votre visage et vos envies.</p>
+    <div class="stats">
+      <div class="stat"><span>500+</span><span>Clients satisfaits</span></div>
+      <div class="stat"><span>5+</span><span>Ans d'expérience</span></div>
+      <div class="stat"><span>100%</span><span>Passion</span></div>
     </div>
-
   </div>
 
 </section>
