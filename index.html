@@ -132,7 +132,7 @@ nav a:hover::after,nav a.on::after{width:100%}
 /* ============================
    PAGE — À PROPOS
    ============================ */
-#pg-about{grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+#pg-about{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
 .about-img-box{position:relative}
 .about-img-box::before{content:'';position:absolute;inset:-8px;border:2px solid var(--or);border-radius:18px;z-index:0}
 .about-img-box img,.about-ph{
@@ -354,7 +354,7 @@ footer{
   .stat span:first-child{font-size:1.8rem}
   .about-img-box{max-width:100%;margin-bottom:1rem}
   .about-img-box::before{display:none}
-  #pg-about.on{padding:80px 4% 40px}
+  #pg-about.on{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
   .foot-col{text-align:center}
   .foot-links{align-items:center}
   .foot-h{text-align:center}
