@@ -60,13 +60,16 @@ img{max-width:100%;display:block}
   background:rgba(10,10,10,.97);
   border-bottom:1px solid rgba(240,192,48,.18);
   backdrop-filter:blur(10px);
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
 }
-.logo{font-family:var(--serif);font-size:1.55rem;color:var(--or);letter-spacing:2px;cursor:pointer}
+.logo{font-family:var(--serif);font-size:1.55rem;color:var(--or);letter-spacing:2px;cursor:pointer;white-space:nowrap}
 .logo span{color:var(--blanc)}
 nav{display:flex;gap:1.8rem;align-items:center}
 nav a{
   font-size:.82rem;letter-spacing:1px;text-transform:uppercase;
-  color:var(--blanc);position:relative;transition:color var(--T);cursor:pointer
+  color:var(--blanc);position:relative;transition:color var(--T);cursor:pointer;white-space:nowrap
 }
 nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width var(--T)}
 nav a:hover,nav a.on{color:var(--or)}
@@ -74,8 +77,7 @@ nav a:hover::after,nav a.on::after{width:100%}
 .nav-rdv{background:var(--or)!important;color:var(--noir)!important;padding:7px 18px;border-radius:var(--radius);font-weight:600}
 .nav-rdv::after{display:none!important}
 .nav-rdv:hover{background:var(--or2)!important}
-/* hamburger */
-.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;flex-shrink:0}
 .hbg span{display:block;width:24px;height:2px;background:var(--or);transition:all var(--T)}
 .hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hbg.open span:nth-child(2){opacity:0}
@@ -325,11 +327,20 @@ footer{
 }
 @media(max-width:680px){
   nav{
-    display:none;flex-direction:column;position:fixed;
-    top:68px;left:0;right:0;background:rgba(10,10,10,.98);
-    padding:1.8rem 5%;gap:1.4rem;border-bottom:1px solid rgba(240,192,48,.18);
-    z-index:998;
-  }
+  display:none;
+  flex-direction:column;
+  position:fixed;
+  top:68px;left:0;right:0;
+  background:rgba(10,10,10,.98);
+  padding:1.8rem 5%;
+  gap:1.4rem;
+  border-bottom:1px solid rgba(240,192,48,.18);
+  z-index:998;
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+  text-align:center;
+}
   nav.open{display:flex}
   .hbg{display:flex}
   .page{padding:80px 4% 50px;min-height:calc(100vh - 68px)}
