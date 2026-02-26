@@ -90,24 +90,13 @@ nav a:hover::after,nav a.on::after{width:100%}
    PAGE — ACCUEIL (HERO)
    ============================ */
 #pg-home{
-  #pg-home{
   min-height:100vh;text-align:center;
   display:flex;align-items:center;justify-content:center;
   padding-top:100px;padding-bottom:40px;
   background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.72)),
              url('images/hero-bg.jpg') center/cover no-repeat;
 }
-  /*
-  ================================================
-  👉 TON IMAGE DE FOND :
-     Remplace hero-bg.jpg par ton fichier image
-     Place le fichier dans le dossier /images/
-  ================================================
-  */
-  background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.72)),
-             url('images/hero-bg.jpg') center/cover no-repeat;
-}
-.hero-wrap{max-width:740px;padding:0 5%}
+.hero-wrap{max-width:740px;padding:0 5%;width:100%}
 /* Cercle logo */
 .logo-circle{
   width:155px;height:155px;border-radius:50%;margin:0 auto 2rem;
@@ -133,7 +122,7 @@ nav a:hover::after,nav a.on::after{width:100%}
    PAGE — À PROPOS
    ============================ */
 #pg-about{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
-.about-img-box{position:relative}
+.about-img-box{position:relative;order:1}
 .about-img-box::before{content:'';position:absolute;inset:-8px;border:2px solid var(--or);border-radius:18px;z-index:0}
 .about-img-box img,.about-ph{
   width:100%;height:280px;object-fit:cover;border-radius:var(--radius);position:relative;z-index:1
@@ -321,7 +310,8 @@ footer{
    RESPONSIVE
    ============================ */
 @media(max-width:900px){
-  #pg-about.on,#pg-contact.on{grid-template-columns:1fr;gap:3rem}
+  #pg-about.on{display:grid !important;grid-template-columns:1fr 1fr;gap:3rem}
+  #pg-contact.on{grid-template-columns:1fr;gap:3rem}
   .resa-wrap{grid-template-columns:1fr;gap:2.5rem}
   .avis-wrap{grid-template-columns:1fr;gap:2.5rem}
   .foot-grid{grid-template-columns:1fr 1fr}
@@ -352,10 +342,10 @@ footer{
   .stats{flex-wrap:wrap;gap:1rem}
   .stat{flex:1;min-width:80px;text-align:center}
   .stat span:first-child{font-size:1.8rem}
-  .about-img-box{max-width:100%;margin-bottom:1rem}
+  .about-img-box{max-width:100%;margin-bottom:1rem;order:0}
   .about-img-box::before{display:none}
   .about-img-box img,.about-ph{height:250px}
-  #pg-about.on{display:flex !important;flex-direction:column;gap:2rem}
+  #pg-about.on{display:flex !important;flex-direction:column !important;gap:2rem}
   .foot-col{text-align:center}
   .foot-links{align-items:center}
   .foot-h{text-align:center}
@@ -363,6 +353,7 @@ footer{
   .foot-brand{text-align:center}
   .foot-brand p{max-width:100%;margin:0 auto}
 }
+
 
 </style>
 </head>
