@@ -96,12 +96,14 @@ nav a:hover::after,nav a.on::after{width:100%}
    ============================ */
 #pg-home{
   min-height:100vh;text-align:center;
-  display:flex;align-items:center;justify-content:center;
-  padding:100px 5% 40px;
   background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.72)),
              url('images/hero-bg.jpg') center/cover no-repeat;
   overflow-x:hidden;
   width:100%;
+}
+#pg-home.on{
+  display:flex;align-items:center;justify-content:center;
+  padding:100px 5% 40px;
 }
 .hero-wrap{max-width:740px;padding:0 5%;width:100%}
 /* Cercle logo */
