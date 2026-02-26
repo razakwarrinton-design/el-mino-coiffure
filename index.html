@@ -330,19 +330,20 @@ footer{
 }
 @media(max-width:680px){
   nav{
-    display:none;
-    flex-direction:column;
-    position:fixed;
-    top:68px;left:0;right:0;
-    background:rgba(10,10,10,.98);
-    padding:1.8rem 5%;
-    gap:1.4rem;
-    border-bottom:1px solid rgba(240,192,48,.18);
-    z-index:998;
-    width:100%;
-    box-sizing:border-box;
-    text-align:center;
-  }
+  display:none;
+  flex-direction:column;
+  position:fixed;
+  top:68px;left:0;right:0;
+  background:rgba(10,10,10,.98);
+  padding:1.8rem 5%;
+  gap:1.4rem;
+  border-bottom:1px solid rgba(240,192,48,.18);
+  z-index:998;
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+  text-align:center;
+}
   nav.open{display:flex}
   .hbg{display:flex}
   .page{padding:80px 4% 50px;min-height:calc(100vh - 68px)}
@@ -362,12 +363,10 @@ footer{
   .stats{flex-wrap:wrap;gap:1rem}
   .stat{flex:1;min-width:80px;text-align:center}
   .stat span:first-child{font-size:1.8rem}
-  .about-img-box{width:100% !important;max-width:100% !important;margin-bottom:1rem;order:0 !important;flex-shrink:0}
-#pg-about > div:first-child{order:1 !important}
+  .about-img-box{max-width:100%;margin-bottom:1rem;order: -1;}
   .about-img-box::before{display:none}
-  .about-img-box img,.about-ph{height:250px;width:100%}
-  #pg-about.on{display:flex !important;flex-direction:column !important;gap:2rem !important;width:100%}
-  #pg-about > div:last-child{width:100%;word-wrap:break-word;overflow-wrap:break-word}
+  .about-img-box img,.about-ph{height:250px}
+  
   .foot-col{text-align:center}
   .foot-links{align-items:center}
   .foot-h{text-align:center}
@@ -425,6 +424,14 @@ footer{
 <section id="pg-about" class="page">
 
   <div class="about-img-box">
+    <!--
+    ============================================================
+    👉 IMAGE SALON :
+       Décommente la ligne img et remplace salon.jpg
+       Puis supprime le bloc about-ph
+    ============================================================
+    -->
+    <!-- <img src="images/salon.jpg" alt="Salon EL MINO"/> -->
     <img src="images/principal.jpg" alt="Salon EL MINO"/>
   </div>
 
